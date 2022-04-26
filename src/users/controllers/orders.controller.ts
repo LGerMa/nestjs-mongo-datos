@@ -13,7 +13,7 @@ import { OrdersService } from '../services/orders.service';
 import {
   CreateOrderDto,
   UpdateOrderDto,
-  //AddProductsToOrderDto,
+  AddProductsToOrderDto,
 } from '../dtos/order.dto';
 
 @ApiTags('orders')
@@ -41,24 +41,24 @@ export class OrdersController {
     return this.ordersService.update(id, payload);
   }
 
-  // @Put(':id/products')
-  // updateProducts(
-  //   @Param('id') id: string,
-  //   @Body() payload: AddProductsToOrderDto,
-  // ) {
-  //   return this.ordersService.addProducts(id, payload.productsIds);
-  // }
+  @Put(':id/products')
+  updateProducts(
+    @Param('id') id: string,
+    @Body() payload: AddProductsToOrderDto,
+  ) {
+    return this.ordersService.addProducts(id, payload.productsIds);
+  }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.ordersService.remove(id);
   }
 
-  // @Delete(':id/product/:productId')
-  // removeProduct(
-  //   @Param('id') id: string,
-  //   @Param('productId') productId: string,
-  // ) {
-  //   return this.ordersService.removeProduct(id, productId);
-  // }
+  @Delete(':id/product/:productId')
+  removeProduct(
+    @Param('id') id: string,
+    @Param('productId') productId: string,
+  ) {
+    return this.ordersService.removeProduct(id, productId);
+  }
 }
